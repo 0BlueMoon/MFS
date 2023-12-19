@@ -1,0 +1,12 @@
+local Library =
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local PhantomForcesWindow = Library:NewWindow("Click For Ugc")
+
+local BlueMoon = PhantomForcesWindow:NewSection("Auto Click")
+BlueMoon:CreateToggle("Auto Click", function(value)
+    _G.Loop = true
+    while _G.Loop  and task.wait() do
+        game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("Click"):FireServer()
+    end
+    end)
