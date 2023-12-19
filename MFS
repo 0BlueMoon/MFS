@@ -1,1 +1,186 @@
 
+local Library =
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local PhantomForcesWindow = Library:NewWindow("MFS")
+
+local BlueMoon = PhantomForcesWindow:NewSection("Main")
+BlueMoon:CreateButton("SimpleSpy",function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/REDzHUB/RS/main/SimpleSpyMobile"))()
+end)
+
+BlueMoon:CreateButton("GhostHup",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
+end)
+
+BlueMoon:CreateButton("PlayerHub V2",function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/JustAP1ayer/PlayerHubOther/main/PlayerHubIngameUgcLimiteds.lua')))()
+end)
+
+BlueMoon:CreateButton("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+local BlueMoon = PhantomForcesWindow:NewSection("UGC")
+
+BlueMoon:CreateTextbox("ID", function(text)
+local id = true -- input the free ugc limited
+
+-- this script below will fire all remotes in the game with the id as an argument
+for i,v in pairs(game:GetDescendants()) do
+if v:IsA("RemoteEvent") then
+v:FireServer(id)
+if v:IsA("BindableEvent") then
+v:Fire(id)
+if v:IsA("RemoteFunction") then
+v:InvokeServer(id)
+end
+end
+end
+end
+end)
+
+    
+BlueMoon:CreateButton("CFrameCopy",function()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    local function copyPositionToClipboard()
+        local cframeString = string.format("game:GetService('Players').LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(%s)", tostring(humanoidRootPart.CFrame))
+        setclipboard(cframeString .. "")
+    end
+
+    copyPositionToClipboard()
+    humanoidRootPart:GetPropertyChangedSignal("CFrame"):Connect(copyPositionToClipboard)
+end)
+BlueMoon:CreateButton("HidePlayer",function()
+    _G.HideAll = true
+    while _G.HideAll and  task.wait() do
+    
+    for i,v in pairs(game.Players:GetPlayers()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character then
+    v.Character:Destroy()
+    end
+    end
+    end
+end)
+
+BlueMoon:CreateButton("Firetouchinterests",function()
+    spawn(function()
+        for i , descendant in ipairs(workspace:GetDescendants()) do
+            if descendant:IsA("TouchTransmitter") and
+                    game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character.PrimaryPart then
+                task.spawn(function()
+                    firetouchinterest(descendant:FindFirstAncestorWhichIsA("Part"),
+                        game.Players.LocalPlayer.Character.PrimaryPart, 1)
+                    task.wait()
+                    firetouchinterest(descendant:FindFirstAncestorWhichIsA("Part"),
+                        game.Players.LocalPlayer.Character.PrimaryPart, 0)
+                end)
+            end
+        end
+    end)
+    spawn(function()
+        for i , descendant in ipairs(workspace:GetDescendants()) do
+            if descendant:IsA("ProximityPrompt") then
+                fireproximityprompt(descendant)
+            end
+        end
+    end) -- Fire Proximitypromt 
+    
+    spawn(function()
+        for i , descendant in ipairs(workspace:GetDescendants()) do
+            if descendant:IsA("ClickDetector") then
+                task.spawn(function()
+                    fireclickdetector(descendant)
+                end)
+            end
+        end
+    end) -- Fire Click detector
+end)
+
+BlueMoon:CreateButton("ProximityPrompt",function()
+    for i, v in next, workspace:GetDescendants() do
+        if v:IsA("ProximityPrompt") then
+        v.HoldDuration = 0
+        end
+        end
+end)
+
+local BlueMoon = PhantomForcesWindow:NewSection("Player")
+
+BlueMoon:CreateToggle("Kill-All-Player", function(value)
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/zephyr10101/sword-kill-all/main/script'))()
+    end)
+
+local player = game.Players.LocalPlayer.Character.Humanoid
+BlueMoon:CreateToggle("SuperMan", function(value)
+    if value then
+        player.WalkSpeed = 100
+        player.JumpPower = 100
+    else
+        player.WalkSpeed = 16
+        player.JumpPower = 32
+    end
+end) 
+BlueMoon:CreateToggle("HitBox", function(value)
+    if value then
+_G.HeadSize = 20
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+    else 
+_G.HeadSize = 0
+_G.Disabled = true
+        
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really blue")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+     end)
+    end
+     end
+    end
+ end)
+    end
+end) 
+
+BlueMoon:CreateToggle("Noclip", function(value)
+
+end)
+
+BlueMoon:CreateToggle("Nofog/fullbright", function(value)
+
+end)
+
+
+BlueMoon:CreateSlider("Slider(ComingSoon)", 0, 100, 15, true, function(value)
+    print(value)
+end)
+
+BlueMoon:CreateColorPicker("Picker(ComingSoon)", Color3.new(255, 255, 255), function(value)
+    print(value)
+end)
+
+local BlueMoon = PhantomForcesWindow:NewSection("BY:BlueMoon")
