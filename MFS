@@ -38,6 +38,10 @@ end
 end
 end)
 
+BlueMoon:CreateDropdown("Teleport(ComingSoon)", {"1", "2", "3"}, 2, function(text)
+    print(value)
+end)
+    
 BlueMoon:CreateButton("CFrameCopy",function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
@@ -162,24 +166,10 @@ v.Character.HumanoidRootPart.CanCollide = false
     end
 end) 
 
-BlueMoon:CreateToggle("...", function(value)
-    if value then
+BlueMoon:CreateSlider("Slider(ComingSoon)", 0, 100, 15, true, function(value)
+    print(value)
+end)
 
-    else
-
-    end
-end) 
-BlueMoon:CreateToggle("...", function(value)
-    if value then
-
-    else
-
-    end
-end) 
-BlueMoon:CreateToggle("...", function(value)
-    if value then
-
-    else
-
-    end
-end) 
+BlueMoon:CreateColorPicker("Picker(ComingSoon)", Color3.new(255, 255, 255), function(value)
+    print(value)
+end)
